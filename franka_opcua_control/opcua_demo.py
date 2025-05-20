@@ -12,7 +12,7 @@ def main():
         password="franka123"
     )
     
-    example = "03"
+    example = "04"
 
     try:
         if example=="01":
@@ -84,6 +84,46 @@ def main():
                 [0.0, -1.0, 0.0, 0.0],
                 [0.0, 0.0, -1.0, 0.0],
                 [0.38, -0.13, 0.70, 1.0]
+            ]).T
+            
+            # Move to home pose
+            print("\nMoving to home pose...")
+            franka.move_to_pose(home_pose)
+            
+            # Move to target pose
+            print("\nMoving to target pose...")
+            franka.move_to_pose(target_pose)
+            
+            # Return to home pose
+            print("\nReturning to home pose...")
+            franka.move_to_pose(home_pose)
+        elif example =="04": 
+            # Example 2: Pose movement; Needs loop with count 3
+            print("\n--- Example 2: Pose Movement ---")
+
+            x1 = 0.40
+            y1 = 0.0
+            z1 = 0.10
+
+            x2 = 0.50
+            y2 = 0.0
+            z2 = 0.10
+
+            
+            # Define home pose
+            home_pose = np.array([
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, -1.0, 0.0, 0.0],
+                [0.0, 0.0, -1.0, 0.0],
+                [x1, y1, z1, 1.0]
+            ]).T
+            
+            # Define target pose
+            target_pose = np.array([
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, -1.0, 0.0, 0.0],
+                [0.0, 0.0, -1.0, 0.0],
+                [x2, y2, z2, 1.0]
             ]).T
             
             # Move to home pose

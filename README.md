@@ -7,3 +7,12 @@ pip install -r requirements.txt
 
 pip install pyrealsense.py
 
+pip install ultralytics
+
+
+sudo python3 /usr/local/bin/pwm_daemon.py
+
+Build the daemon:
+- sudo nano /usr/local/bin/pwm_daemon.py
+Launch the daemon:
+- sudo python3 /usr/local/bin/pwm_daemon.py

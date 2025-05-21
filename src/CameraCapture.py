@@ -23,7 +23,7 @@ class CameraCapture:
         
         return frame
 
-    def save_image(self, frame, filename="mac_webcam_bild.jpg"):
+    def save_image(self, frame, filename="../test_images/captured_image.jpg"):
         """Speichert das übergebene Bild"""
         cv2.imwrite(filename, frame)
         print(f"Bild gespeichert als {filename}")

@@ -224,10 +224,10 @@ def main():
     """Test the AprilTagCoordinateTransformer class."""
     try:
         # Initialize transformer
-        transformer = AprilTagCoordinateTransformer("config.yaml")
+        transformer = AprilTagCoordinateTransformer("config/config.yaml")
         
         # Load test image (replace with your test image)
-        test_image = cv2.imread("test_image.jpg")
+        test_image = cv2.imread("test_images/test_image.jpg")
         if test_image is None:
             raise AprilTagError("Failed to load test image")
         

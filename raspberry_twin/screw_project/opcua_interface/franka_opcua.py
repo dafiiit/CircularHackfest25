@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 import time
-from opcua_interface import Client, ua
+from opcua import Client, ua
 from opcua.common.type_dictionary_buider import get_ua_class
 
 class FrankaOPCUA:
@@ -24,6 +24,14 @@ class FrankaOPCUA:
         """Clean up by disconnecting the client when the object is destroyed."""
         if hasattr(self, 'client'):
             self.client.disconnect()
+    
+    def disconnect(self):
+        if hasattr(self, "client"):
+            try:
+                self.client.disconnect()
+                print("[OPCUA] Disconnected successfully.")
+            except Exception as e:
+                print(f"[OPCUA] Error during disconnect: {e}")
     
     @staticmethod
     def stack_A(R, t):

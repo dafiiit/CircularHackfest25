@@ -25,6 +25,14 @@ class FrankaOPCUA:
         if hasattr(self, 'client'):
             self.client.disconnect()
     
+    def disconnect(self):
+        if hasattr(self, "client"):
+            try:
+                self.client.disconnect()
+                print("[OPCUA] Disconnected successfully.")
+            except Exception as e:
+                print(f"[OPCUA] Error during disconnect: {e}")
+    
     @staticmethod
     def stack_A(R, t):
         """Create a 4x4 homogeneous transformation matrix from rotation and translation."""

@@ -7,7 +7,15 @@ username = "Service"
 password = "1234"
 
 # REST API snapshot URL (adjust if needed)
-snapshot_url = f"http://{camera_ip}/api/snapshot"
+# SnapshotTriggerNamedSnapshot
+snapshot_url = f"http://{camera_ip}/api/SnapshotTriggerSnapshot"
+
+payload = {
+        "data": 
+        {
+            "SnapshotName": "test-1"
+        }
+    }
 
 # Make the POST request to trigger a snapshot
 response = requests.post(snapshot_url, auth=HTTPBasicAuth(username, password))

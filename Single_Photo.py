@@ -1,3 +1,4 @@
+# Nimmt ein einziges Bild auf
 import cv2
 
 # Kamera öffnen (bei Mac meist index 0)
@@ -8,6 +9,7 @@ if not cap.isOpened():
     exit()
 
 # Einzelnes Bild aufnehmen
+
 ret, frame = cap.read()
 
 if ret:

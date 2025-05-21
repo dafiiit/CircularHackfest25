@@ -1,3 +1,9 @@
+# Dieses file beinhaltet die Konfiguration für die April Tag detection.
+# Es wird die Position und die Rotation der April Tags im realen Raum definiert.
+# Die Position und die Rotation werden in einem Array gespeichert.
+# Die Position ist ein Array mit drei Werten: x, y, z in Metern.
+# Die Rotation ist ein Array mit drei Werten: roll, pitch, yaw in Radiant.
+
 # AprilTag configuration
 april_tags:
   tag_0:

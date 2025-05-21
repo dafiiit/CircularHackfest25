@@ -3,12 +3,12 @@ import cv2
 import os
 
 class CameraCapture:
-    def __init__(self, camera_index=0, test_mode=False):
+    def __init__(self, camera_index=0, test_mode=False, test_image="test_image_screw.jpg"):
         self.camera_index = camera_index
         self.cap = None
         self.test_mode = test_mode
         self.test_images_dir = "test_images"
-        self.test_image = "test_image.jpg"
+        self.test_image = test_image
 
     def _load_test_images(self):
         """Load the specific test image"""

@@ -1,7 +1,11 @@
 # CircularHackfest25
 Shared Repository for the Hackathon
 
-Das klingt nach einem spannenden und komplexen Projekt! Damit ihr strukturiert arbeiten könnt und euch nicht im Chaos verliert, hier ein Vorschlag, wie ihr das Projekt aufsetzt und sinnvoll aufteilt.
+# Todo
+- Roboter in Code integrieren
+- Kamera kalibrieren
+- Marker Positionieren und Position ausmessen
+- evtl Fokuss auf eine fixierte Distanz setzen
 
 ⸻
 

@@ -8,10 +8,10 @@ from CameraCapture import CameraCapture
 from AprilTagCoordinateTransformer import AprilTagCoordinateTransformer
 import cv2
 
-def main(test_mode=False):
+def main(test_mode=False, test_image="test_image_screw.jpg"):
     # Initialize components
     detector = ScrewDetector()
-    camera = CameraCapture(test_mode=test_mode)
+    camera = CameraCapture(test_mode=test_mode, test_image=test_image)
     transformer = AprilTagCoordinateTransformer(config_path="config/config.yaml")
 
     try:
@@ -50,32 +50,50 @@ def main(test_mode=False):
             cv2.putText(vis_image, coord_text, (x1, y2+20), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
         
-        # Visualize AprilTags
-        detected_tags = transformer.detect_april_tags(frame)
-        
-        # Add AprilTag status message
-        if len(detected_tags) == 0:
-            status_text = "No AprilTags detected"
-            status_color = (0, 0, 255)  # Red
-        elif len(detected_tags) < 4:
-            status_text = f"Warning: Only {len(detected_tags)} AprilTags detected (need 4)"
-            status_color = (0, 165, 255)  # Orange
+        # Add screw detection status message
+        if len(detections) == 0:
+            screw_status = "No screws detected"
+            screw_status_color = (0, 0, 255)  # Red
         else:
-            status_text = f"Successfully detected {len(detected_tags)} AprilTags"
-            status_color = (0, 255, 0)  # Green
+            screw_types = set(det['class_id'] for det in detections)
+            screw_status = f"Detected {len(detections)} screws of type(s): {', '.join(map(str, screw_types))}"
+            screw_status_color = (0, 255, 0)  # Green
         
-        # Draw AprilTag status message
-        cv2.putText(vis_image, status_text, (10, 30), 
-                   cv2.FONT_HERSHEY_SIMPLEX, 0.7, status_color, 2)
+        # Draw screw detection status message
+        cv2.putText(vis_image, screw_status, (10, 60), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.7, screw_status_color, 2)
         
-        # Draw detected AprilTags
-        for tag in detected_tags:
-            if tag.corners is not None:
-                corners = tag.corners.astype(int)
-                cv2.polylines(vis_image, [corners], True, (255, 0, 0), 2)
-                cv2.putText(vis_image, f"Tag {tag.id}", 
-                          tuple(corners[0]), cv2.FONT_HERSHEY_SIMPLEX, 
-                          0.5, (255, 0, 0), 2)
+        # Visualize AprilTags
+        try:
+            detected_tags = transformer.detect_april_tags(frame)
+            
+            # Add AprilTag status message
+            if len(detected_tags) == 0:
+                status_text = "No AprilTags detected"
+                status_color = (0, 0, 255)  # Red
+            elif len(detected_tags) < 4:
+                status_text = f"Warning: Only {len(detected_tags)} AprilTags detected (need 4)"
+                status_color = (0, 165, 255)  # Orange
+            else:
+                status_text = f"Successfully detected {len(detected_tags)} AprilTags"
+                status_color = (0, 255, 0)  # Green
+            
+            # Draw AprilTag status message
+            cv2.putText(vis_image, status_text, (10, 30), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, status_color, 2)
+            
+            # Draw detected AprilTags
+            for tag in detected_tags:
+                if tag.corners is not None:
+                    corners = tag.corners.astype(int)
+                    cv2.polylines(vis_image, [corners], True, (255, 0, 0), 2)
+                    cv2.putText(vis_image, f"Tag {tag.id}", 
+                              tuple(corners[0]), cv2.FONT_HERSHEY_SIMPLEX, 
+                              0.5, (255, 0, 0), 2)
+        except Exception as e:
+            # If AprilTag detection fails, still show the visualization
+            cv2.putText(vis_image, "AprilTag detection failed", (10, 30), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         
         # Show the combined visualization
         cv2.imshow('Combined Detection Results', vis_image)
@@ -89,5 +107,6 @@ def main(test_mode=False):
 
 if __name__ == "__main__":
     # Set test_mode=True to use test images instead of camera
-    main(test_mode=True)
+    # Specify which test image to use
+    main(test_mode=True, test_image="apriltags.jpg")
 

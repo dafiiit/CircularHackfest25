@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 import time
-from opcua import Client, ua
+from opcua_interface import Client, ua
 from opcua.common.type_dictionary_buider import get_ua_class
 
 class FrankaOPCUA:

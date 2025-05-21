@@ -16,3 +16,7 @@ Build the daemon:
 - sudo nano /usr/local/bin/pwm_daemon.py
 Launch the daemon:
 - sudo python3 /usr/local/bin/pwm_daemon.py
+
+
+Launch gpio_server:
+- python3 gpio_server.py (outside of conda!!)

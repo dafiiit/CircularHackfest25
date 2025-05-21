@@ -32,3 +32,16 @@ camera:
     - [0.0, 1000.0, 240.0]
     - [0.0, 0.0, 1.0]
   distortion: [0.0, 0.0, 0.0, 0.0, 0.0]  # Example distortion coefficients 
+
+# Verschiebungsvektor vom Koordinatensystem des Roboters zum Koordinatensystem der Kamera:
+robot_to_camera:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+
+# Rotationsvektor vom Koordinatensystem des Roboters zum Koordinatensystem der Kamera:
+robot_to_camera_rotation:
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+

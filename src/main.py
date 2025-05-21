@@ -6,13 +6,16 @@ Gibt die Positionen der Schrauben in Relation zum Koordinatensystem des Roboters
 from ScrewDetection import ScrewDetector
 from CameraCapture import CameraCapture
 from AprilTagCoordinateTransformer import AprilTagCoordinateTransformer
+from MoveRobot import MoveRobot
 import cv2
+import time
 
 def main(test_mode=False, test_image="test_image_screw.jpg"):
     # Initialize components
     detector = ScrewDetector()
     camera = CameraCapture(test_mode=test_mode, test_image=test_image)
     transformer = AprilTagCoordinateTransformer(config_path="config/config.yaml")
+    robot = MoveRobot()
 
     try:
         # Capture image
@@ -49,6 +52,16 @@ def main(test_mode=False, test_image="test_image_screw.jpg"):
             coord_text = f"World: ({transformed_coords[0]:.2f}, {transformed_coords[1]:.2f}, {transformed_coords[2]:.2f})"
             cv2.putText(vis_image, coord_text, (x1, y2+20), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            
+            # Remove the screw if coordinates are valid
+            if all(coord is not None for coord in transformed_coords):
+                print(f"\nAttempting to remove screw at coordinates: {transformed_coords}")
+                success = robot.remove_screw(*transformed_coords)
+                if success:
+                    print("Screw removal successful!")
+                else:
+                    print("Screw removal failed!")
+                time.sleep(1)  # Small delay between screws
         
         # Add screw detection status message
         if len(detections) == 0:
@@ -104,6 +117,7 @@ def main(test_mode=False, test_image="test_image_screw.jpg"):
         print(f"Error: {str(e)}")
     finally:
         camera.close()
+        robot.cleanup()
 
 if __name__ == "__main__":
     # Set test_mode=True to use test images instead of camera

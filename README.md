@@ -2,7 +2,7 @@
 Shared Repository for the Hackathon
 
 # Todo
-- Roboter in Code integrieren
+- Roboter in Code integrieren (überprüfen ob der Code läuft)
 - Kamera kalibrieren
 - Marker Positionieren und Position ausmessen
 - evtl Fokuss auf eine fixierte Distanz setzen

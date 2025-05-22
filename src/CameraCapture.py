@@ -1,6 +1,7 @@
 # Nimmt ein einziges Bild auf
 import cv2
 import os
+import matplotlib.pyplot as plt
 
 class CameraCapture:
     def __init__(self, camera_index=0, test_mode=False, test_image="test_image_screw.jpg"):
@@ -47,9 +48,10 @@ class CameraCapture:
         
         return frame
 
-    def save_image(self, frame, filename="../test_images/captured_image.jpg"):
+    def save_image(self, frame, filename="./calibration_images/captured_image.jpg"):
         """Speichert das übergebene Bild"""
         cv2.imwrite(filename, frame)
+        #plt.imsave(filename, frame)
         print(f"Bild gespeichert als {filename}")
 
     def close(self):
@@ -68,15 +70,13 @@ def main():
         # Bild aufnehmen
         frame = camera.capture_image()
         
+         
+        camera.save_image(frame)
         # Bild anzeigen
         cv2.imshow("Aufgenommenes Bild", frame)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         
-        # Nach Speicherung fragen
-        save = input("Möchten Sie das Bild speichern? (j/n): ").lower()
-        if save == 'j':
-            camera.save_image(frame)
             
     except Exception as e:
         print(f"Fehler: {str(e)}")

@@ -48,7 +48,7 @@ class CameraCapture:
         
         return frame
 
-    def save_image(self, frame, filename="./calibration_images/captured_image.jpg"):
+    def save_image(self, frame, filename="./test_images/image03.jpg"):
         """Speichert das übergebene Bild"""
         cv2.imwrite(filename, frame)
         #plt.imsave(filename, frame)
@@ -73,9 +73,9 @@ def main():
          
         camera.save_image(frame)
         # Bild anzeigen
-        cv2.imshow("Aufgenommenes Bild", frame)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        #cv2.imshow("Aufgenommenes Bild", frame)
+        #cv2.waitKey(0)
+        #cv2.destroyAllWindows()
         
             
     except Exception as e:

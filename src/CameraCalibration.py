@@ -5,7 +5,7 @@ import yaml
 import os
 
 # Set chessboard size
-chessboard_size = (9, 6)
+chessboard_size = (7, 7)
 
 # Prepare object points like (0,0,0), (1,0,0), ..., (8,5,0)
 objp = np.zeros((chessboard_size[0]*chessboard_size[1], 3), np.float32)
@@ -15,7 +15,7 @@ objpoints = []  # 3D points in real world space
 imgpoints = []  # 2D points in image plane
 
 # Load all calibration images
-images = glob.glob('calibration_images/*.jpg')  # update path accordingly
+images = glob.glob('./calibration_images/*.jpg')  # update path accordingly
 
 if not images:
     raise FileNotFoundError("No calibration images found in 'calibration_images' directory")

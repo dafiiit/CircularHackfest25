@@ -1,47 +1,68 @@
-# Dieses file beinhaltet die Konfiguration für die April Tag detection.
-# Es wird die Position und die Rotation der April Tags im realen Raum definiert.
-# Die Position und die Rotation werden in einem Array gespeichert.
-# Die Position ist ein Array mit drei Werten: x, y, z in Metern.
-# Die Rotation ist ein Array mit drei Werten: roll, pitch, yaw in Radiant.
-
-# AprilTag configuration
 april_tags:
   tag_0:
     id: 0
-    position: [0.0, 0.0, 0.0]  # x, y, z in meters
-    rotation: [0.0, 0.0, 0.0]  # roll, pitch, yaw in radians
+    position:
+    - 0.0
+    - 0.0
+    - 0.0
+    rotation:
+    - 0.0
+    - 0.0
+    - 0.0
   tag_1:
     id: 1
-    position: [1.0, 0.0, 0.0]
-    rotation: [0.0, 0.0, 0.0]
+    position:
+    - 1.0
+    - 0.0
+    - 0.0
+    rotation:
+    - 0.0
+    - 0.0
+    - 0.0
   tag_2:
     id: 2
-    position: [1.0, 1.0, 0.0]
-    rotation: [0.0, 0.0, 0.0]
+    position:
+    - 1.0
+    - 1.0
+    - 0.0
+    rotation:
+    - 0.0
+    - 0.0
+    - 0.0
   tag_3:
     id: 3
-    position: [0.0, 1.0, 0.0]
-    rotation: [0.0, 0.0, 0.0]
-
-# Camera parameters
+    position:
+    - 0.0
+    - 1.0
+    - 0.0
+    rotation:
+    - 0.0
+    - 0.0
+    - 0.0
 camera:
-  width: 640
+  distortion:
+  - - -0.06482573168547394
+    - -0.4060969240690281
+    - 0.019952787010354845
+    - -0.010297756239502026
+    - 0.6638798452377752
   height: 480
-  matrix:  # Example camera matrix - should be calibrated for your camera
-    - [1000.0, 0.0, 320.0]
-    - [0.0, 1000.0, 240.0]
-    - [0.0, 0.0, 1.0]
-  distortion: [0.0, 0.0, 0.0, 0.0, 0.0]  # Example distortion coefficients 
-
-# Verschiebungsvektor vom Koordinatensystem des Roboters zum Koordinatensystem der Kamera:
+  matrix:
+  - - 1465.9503320848155
+    - 0.0
+    - 999.3140619188151
+  - - 0.0
+    - 1460.2206787324915
+    - 520.6774754932686
+  - - 0.0
+    - 0.0
+    - 1.0
+  width: 640
 robot_to_camera:
   x: 0.0
   y: 0.0
   z: 0.0
-
-# Rotationsvektor vom Koordinatensystem des Roboters zum Koordinatensystem der Kamera:
 robot_to_camera_rotation:
-  roll: 0.0
   pitch: 0.0
+  roll: 0.0
   yaw: 0.0
-

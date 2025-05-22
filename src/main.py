@@ -10,12 +10,12 @@ from MoveRobot import MoveRobot
 import cv2
 import time
 
-def main(test_mode=False, test_image="test_image_screw.jpg"):
+def main(test_mode=False, test_image="test_image_screw.jpg", robot_enabled=False):
     # Initialize components
     detector = ScrewDetector()
     camera = CameraCapture(test_mode=test_mode, test_image=test_image)
     transformer = AprilTagCoordinateTransformer(config_path="config/config.yaml")
-    robot = MoveRobot()
+    robot = MoveRobot() if robot_enabled else None
 
     try:
         # Capture image
@@ -53,8 +53,8 @@ def main(test_mode=False, test_image="test_image_screw.jpg"):
             cv2.putText(vis_image, coord_text, (x1, y2+20), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
             
-            # Remove the screw if coordinates are valid
-            if all(coord is not None for coord in transformed_coords):
+            # Remove the screw if coordinates are valid and robot is enabled
+            if robot_enabled and all(coord is not None for coord in transformed_coords):
                 print(f"\nAttempting to remove screw at coordinates: {transformed_coords}")
                 success = robot.remove_screw(*transformed_coords)
                 if success:
@@ -117,10 +117,12 @@ def main(test_mode=False, test_image="test_image_screw.jpg"):
         print(f"Error: {str(e)}")
     finally:
         camera.close()
-        robot.cleanup()
+        if robot_enabled:
+            robot.cleanup()
 
 if __name__ == "__main__":
     # Set test_mode=True to use test images instead of camera
     # Specify which test image to use
-    main(test_mode=True, test_image="apriltags.jpg")
+    # Set robot_enabled=False to test only image capture, AprilTag detection, and screw detection
+    main(test_mode=True, test_image="test_screw_23.jpg", robot_enabled=False)
 

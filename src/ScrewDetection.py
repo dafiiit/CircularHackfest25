@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 class ScrewDetector:
-    def __init__(self, model_path='config/best-yolo11n-augmented.pt'):
+    def __init__(self, model_path='config/best.pt'):
         """Initialize the screw detector with a YOLO model."""
         self.model = YOLO(model_path)
     

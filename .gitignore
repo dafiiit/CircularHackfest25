@@ -18,3 +18,5 @@ dist/
 
 # dotenv
 .env
+
+best-yolo11x-augmented.pt

@@ -2,7 +2,7 @@
 Diese Datei enthält eine Klasse, die den Roboter so ansteuert.
 Dabei soll die Schraubenposition übergeben werden und der Roboter schraubt entfernt dann automatisch die Schraube an dieser Position.
 
-Das hier müssen wir morgen noch testen.
+Diese Datei  müssen wir noch testen.
 """
 
 import time

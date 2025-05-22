@@ -48,7 +48,7 @@ class CameraCapture:
         
         return frame
 
-    def save_image(self, frame, filename="./test_images/image03.jpg"):
+    def save_image(self, frame, filename="./test_images/test_screw_20.jpg"):
         """Speichert das übergebene Bild"""
         cv2.imwrite(filename, frame)
         #plt.imsave(filename, frame)

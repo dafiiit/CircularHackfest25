@@ -69,7 +69,7 @@ def main():
     detector = ScrewDetector()
     
     # Image path
-    image_path = "test_images/image02.jpg"
+    image_path = "test_images/test_screw_9.jpg"
     
     # Detect screws
     detections = detector.detect_screws(image_path)
